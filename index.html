@@ -6,16 +6,18 @@
   <title>Clínica Dental Sonrisas Sanas</title>
   <!-- Fuente Google Font (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --primary: #0077b6;
       --primary-dark: #023e8a;
       --secondary: #00b4d8;
-      --accent: #52b788;
+      --accent: #2a9d8f;
+      --accent-hover: #218376;
       --light-bg: #f8f9fa;
       --dark-text: #2b2d42;
       --white: #ffffff;
-      --shadow: 0 4px 15px rgba(0,0,0,0.08);
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
     * {
@@ -32,13 +34,13 @@
       scroll-behavior: smooth;
     }
 
-    /* Navegación */
+    /* Encabezado y Navegación */
     header {
       background: var(--white);
       box-shadow: var(--shadow);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 900;
     }
 
     .nav-container {
@@ -55,9 +57,6 @@
       font-weight: 700;
       color: var(--primary);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     nav a {
@@ -75,19 +74,24 @@
     .btn-cita {
       background-color: var(--accent);
       color: var(--white) !important;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 25px;
-      transition: background 0.3s !important;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
 
     .btn-cita:hover {
-      background-color: #40916c !important;
+      background-color: var(--accent-hover) !important;
+      transform: scale(1.03);
     }
 
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #e0f7fa 0%, #caf0f8 100%);
-      padding: 80px 20px;
+      padding: 90px 20px;
       text-align: center;
     }
 
@@ -105,10 +109,10 @@
     .hero p {
       font-size: 1.2rem;
       color: #457b9d;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
-    /* Contenedores Principales */
+    /* Contenedores */
     .container {
       max-width: 1100px;
       margin: auto;
@@ -117,7 +121,7 @@
 
     .section-title {
       text-align: center;
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: var(--primary-dark);
       margin-bottom: 40px;
       position: relative;
@@ -125,7 +129,7 @@
 
     .section-title::after {
       content: '';
-      width: 60px;
+      width: 70px;
       height: 4px;
       background: var(--secondary);
       display: block;
@@ -133,7 +137,7 @@
       border-radius: 2px;
     }
 
-    /* Sección Nosotros (Tarjetas de Misión y Visión) */
+    /* Tarjetas Nosotros */
     .nosotros-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -143,7 +147,7 @@
     .info-card {
       background: var(--white);
       padding: 30px;
-      border-radius: 12px;
+      border-radius: 15px;
       box-shadow: var(--shadow);
       border-top: 5px solid var(--primary);
     }
@@ -154,7 +158,7 @@
       font-size: 1.4rem;
     }
 
-    /* Servicios en Grid */
+    /* Servicios en Grid con hover JS/CSS */
     .servicios-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -163,26 +167,27 @@
 
     .servicio-card {
       background: var(--white);
-      padding: 30px;
-      border-radius: 12px;
+      padding: 35px 25px;
+      border-radius: 15px;
       box-shadow: var(--shadow);
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .servicio-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
     }
 
     .icon {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       display: inline-block;
     }
 
     .servicio-card h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--primary-dark);
       margin-bottom: 10px;
     }
@@ -191,7 +196,7 @@
     .contacto-container {
       background: var(--white);
       padding: 40px;
-      border-radius: 12px;
+      border-radius: 15px;
       box-shadow: var(--shadow);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -208,7 +213,109 @@
       color: var(--primary);
     }
 
-    /* Footer */
+    /* Ventana Modal Interactiva (JS) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: var(--white);
+      padding: 35px;
+      border-radius: 15px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: popup 0.3s ease-out;
+    }
+
+    @keyframes popup {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .modal h2 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Botón Flotante de WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+    }
+
     footer {
       background: var(--primary-dark);
       color: var(--white);
@@ -217,24 +324,16 @@
       margin-top: 40px;
     }
 
-    /* Adaptabilidad Móvil */
     @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 15px;
-      }
-      nav a {
-        margin: 0 8px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
+      .nav-container { flex-direction: column; gap: 15px; }
+      nav a { margin: 0 8px; }
+      .hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Encabezado y Navegación -->
+  <!-- Navegación -->
   <header>
     <div class="nav-container">
       <a href="#" class="logo">🦷 Sonrisas Sanas</a>
@@ -242,78 +341,148 @@
         <a href="#inicio">Inicio</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Servicios</a>
-        <a href="#contacto" class="btn-cita">Agendar Cita</a>
+        <a href="#contacto">Contacto</a>
+        <button class="btn-cita" onclick="abrirModal()">Agendar Cita</button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero / Banner de Bienvenida -->
+  <!-- Hero Section -->
   <section id="inicio" class="hero">
     <div class="hero-content">
       <h1>Cuidamos tu sonrisa con la mejor tecnología</h1>
-      <p>Atención médica odontológica profesional, estética e integral para ti y toda tu familia.</p>
+      <p>Atención odontológica integral, profesional y estética para ti y tu familia.</p>
+      <button class="btn-cita" style="font-size: 1.1rem; padding: 0.8rem 2rem;" onclick="abrirModal()">Reservar una Consulta</button>
     </div>
   </section>
 
-  <!-- Sección Nosotros -->
+  <!-- Nosotros -->
   <section id="nosotros" class="container">
     <h2 class="section-title">Sobre Nosotros</h2>
     <div class="nosotros-grid">
       <div class="info-card">
         <h3>🎯 Nuestra Misión</h3>
-        <p>Ofrecer la mejor atención dental personalizada con tecnología de vanguardia, garantizando tratamientos cómodos, seguros y eficientes para nuestros pacientes.</p>
+        <p>Proporcionar una atención odontológica integral con estándares de alta calidad, utilizando tecnología moderna para garantizar tratamientos seguros y sin dolor.</p>
       </div>
       <div class="info-card">
         <h3>👁️ Nuestra Visión</h3>
-        <p>Ser la clínica dental referente en la región por nuestra excelencia profesional, calidez humana e innovación constante en salud oral.</p>
+        <p>Liderar la salud oral preventiva y estética de la región, destacándonos por la calidez humana y la confianza depositada por miles de familias.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sección Servicios -->
+  <!-- Servicios -->
   <section id="servicios" class="container">
     <h2 class="section-title">Nuestros Servicios</h2>
     <div class="servicios-grid">
-      <div class="servicio-card">
+      <div class="servicio-card" onclick="abrirModal('Ortodoncia e Implantes')">
         <div class="icon">😁</div>
         <h3>Ortodoncia e Implantes</h3>
-        <p>Alineación dental perfecta e implantes de alta durabilidad.</p>
+        <p>Alineación dental y prótesis sobre implantes duraderas.</p>
       </div>
-      <div class="servicio-card">
+      <div class="servicio-card" onclick="abrirModal('Blanqueamiento Dental')">
         <div class="icon">✨</div>
         <h3>Blanqueamiento Estético</h3>
-        <p>Aclara el tono de tus dientes con resultados visibles en una sesión.</p>
+        <p>Aclara el tono de tus dientes visiblemente en 1 sesión.</p>
       </div>
-      <div class="servicio-card">
+      <div class="servicio-card" onclick="abrirModal('Limpieza Profunda')">
         <div class="icon">🧼</div>
         <h3>Limpieza Profunda</h3>
-        <p>Profilaxis completa y eliminación de sarro para prevenir caries.</p>
+        <p>Eliminación de sarro y profilaxis dental preventiva.</p>
       </div>
-      <div class="servicio-card">
+      <div class="servicio-card" onclick="abrirModal('Odontopediatría')">
         <div class="icon">👶</div>
         <h3>Odontopediatría</h3>
-        <p>Cuidado especializado y amigable para la salud dental de los niños.</p>
+        <p>Cuidado dental especializado y amigable para los niños.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sección Contacto -->
+  <!-- Contacto -->
   <section id="contacto" class="container">
     <h2 class="section-title">Contacto y Ubicación</h2>
     <div class="contacto-container">
       <div class="contacto-info">
         <p><span>📍 Dirección:</span> Av. Principal 123, Lima, Perú</p>
         <p><span>📞 Teléfono:</span> +51 987 654 321</p>
-        <p><span>✉️ Correo Electrónico:</span> contacto@sonrisassanas.com</p>
-        <p><span>⏰ Horario de Atención:</span> Lunes a Sábado: 8:00 AM - 7:00 PM</p>
+        <p><span>✉️ Email:</span> contacto@sonrisassanas.com</p>
+        <p><span>⏰ Horario:</span> Lunes a Sábado: 8:00 AM - 7:00 PM</p>
       </div>
     </div>
   </section>
 
-  <!-- Pie de página -->
+  <!-- Modal Interactivo con Formulario JavaScript -->
+  <div class="modal" id="modalCita">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal()">&times;</span>
+      <h2>Reserva tu Cita</h2>
+      <form id="formCita" onsubmit="procesarCita(event)">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" id="nombre" required placeholder="Ej: María García">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" required placeholder="Ej: +51 987654321">
+        </div>
+        <div class="form-group">
+          <label for="servicio">Servicio de Interés:</label>
+          <select id="servicio">
+            <option value="Consulta General">Consulta General</option>
+            <option value="Ortodoncia e Implantes">Ortodoncia e Implantes</option>
+            <option value="Blanqueamiento Dental">Blanqueamiento Estético</option>
+            <option value="Limpieza Profunda">Limpieza Profunda</option>
+            <option value="Odontopediatría">Odontopediatría</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fecha">Fecha Preferida:</label>
+          <input type="date" id="fecha" required>
+        </div>
+        <button type="submit" class="form-submit">Confirmar Reserva</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón Flotante WhatsApp -->
+  <a href="https://wa.me/51987654321?text=Hola,%20quisiera%20información%20sobre%20una%20cita" target="_blank" class="whatsapp-float">
+    💬 WhatsApp
+  </a>
+
   <footer>
     <p>&copy; 2026 Clínica Dental Sonrisas Sanas. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Script Dinámico de JavaScript -->
+  <script>
+    function abrirModal(servicio = '') {
+      document.getElementById('modalCita').style.display = 'flex';
+      if (servicio) {
+        document.getElementById('servicio').value = servicio;
+      }
+    }
+
+    function cerrarModal() {
+      document.getElementById('modalCita').style.display = 'none';
+    }
+
+    // Cerrar el modal al hacer clic fuera de él
+    window.onclick = function(event) {
+      const modal = document.getElementById('modalCita');
+      if (event.target == modal) {
+        cerrarModal();
+      }
+    }
+
+    function procesarCita(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const servicio = document.getElementById('servicio').value;
+      alert(`¡Gracias ${nombre}! Tu cita para "${servicio}" ha sido registrada exitosamente. Nos comunicaremos contigo en breve.`);
+      cerrarModal();
+      document.getElementById('formCita').reset();
+    }
+  </script>
 
 </body>
 </html>
