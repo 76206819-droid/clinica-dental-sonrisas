@@ -54,7 +54,7 @@
       backdrop-filter: blur(16px);
       background: rgba(15, 23, 42, 0.8);
       border-bottom: 1px solid var(--glass-border);
-      z-index: 1000;
+      z-index: 900;
     }
     .nav-container {
       max-width: 1200px;
@@ -128,7 +128,7 @@
       border: 1px solid var(--glass-border);
     }
 
-    /* Grid de Servicios Futuro */
+    /* Grid de Servicios */
     .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
     .title-center { text-align: center; margin-bottom: 50px; }
     .title-center h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
@@ -146,6 +146,7 @@
       padding: 35px;
       border-radius: 20px;
       transition: all 0.4s ease;
+      cursor: pointer;
     }
     .glass-card:hover {
       transform: translateY(-10px);
@@ -154,18 +155,104 @@
     }
     .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
 
-    /* Interactive Estimator Widget (JS) */
-    .calc-box {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      padding: 40px;
-      border-radius: 24px;
-      max-width: 700px;
-      margin: 40px auto;
+    /* Ventana Modal Interactiva */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
-    .slider-group { margin-bottom: 25px; }
-    .slider-group label { display: block; margin-bottom: 10px; font-weight: 600; }
-    input[type=range] { width: 100%; accent-color: var(--primary); }
+
+    .modal-content {
+      background: #1e293b;
+      border: 1px solid var(--glass-border);
+      padding: 35px;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      animation: popup 0.3s ease-out;
+      color: var(--text-main);
+    }
+
+    @keyframes popup {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px; right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal h2 {
+      color: var(--text-main);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px;
+      background: #0f172a;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), #0077b6);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Botón Flotante WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px; right: 25px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
 
     footer {
       border-top: 1px solid var(--glass-border);
@@ -193,18 +280,19 @@
       <a href="#" class="logo">Sonrisas<span>Sanas</span></a>
       <nav>
         <a href="#servicios">Especialidades</a>
-        <a href="#simulador">Calculador</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <button class="btn-glow" onclick="alert('Sistema de agendamiento activo.')">Reservar Cita</button>
+      <!-- Botón configurado para abrir el modal -->
+      <button class="btn-glow" onclick="abrirModal()">Reservar Cita</button>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-text">
       <h1>La nueva era de la estética dental</h1>
-      <p>Tratamientos odontológicos indoloros guiados por inteligencia artificial y diseño digital de sonrisa.</p>
-      <button class="btn-glow" style="font-size: 1.1rem;">Agendar Evaluación Digital</button>
+      <p>Tratamientos odontológicos indoloros guiados por tecnología avanzada y diseño digital de sonrisa.</p>
+      <!-- Botón configurado para abrir el modal -->
+      <button class="btn-glow" style="font-size: 1.1rem;" onclick="abrirModal()">Agendar Evaluación Digital</button>
     </div>
     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Clínica Dental Futurista" class="hero-img">
   </section>
@@ -212,25 +300,25 @@
   <section id="servicios" class="container">
     <div class="title-center">
       <h2>Especialidades de Vanguardia</h2>
-      <p>Diseñamos sonrisas perfectas con tecnología laser y microscopía clínica.</p>
+      <p>Haz clic en cualquier servicio para agendar tu consulta.</p>
     </div>
     <div class="grid-services">
-      <div class="glass-card">
+      <div class="glass-card" onclick="abrirModal('Diseño 3D de Sonrisa')">
         <span class="card-icon">✨</span>
         <h3>Diseño 3D de Sonrisa</h3>
         <p>Visualiza el resultado final de tus carillas o coronas antes de iniciar el tratamiento.</p>
       </div>
-      <div class="glass-card">
+      <div class="glass-card" onclick="abrirModal('Ortodoncia Invisible')">
         <span class="card-icon">🦷</span>
         <h3>Ortodoncia Invisible</h3>
         <p>Alineadores transparentes de última generación sin brackets ni molestias.</p>
       </div>
-      <div class="glass-card">
+      <div class="glass-card" onclick="abrirModal('Blanqueamiento Láser')">
         <span class="card-icon">💎</span>
         <h3>Blanqueamiento Láser</h3>
         <p>Aclaramiento en una sola sesión de 45 minutos sin sensibilidad dental.</p>
       </div>
-      <div class="glass-card">
+      <div class="glass-card" onclick="abrirModal('Implantes Guiados')">
         <span class="card-icon">🛡️</span>
         <h3>Implantes Guiados</h3>
         <p>Cirugía guiada por escáner intraoral 3D para una recuperación rápida.</p>
@@ -238,34 +326,74 @@
     </div>
   </section>
 
-  <!-- Simulador de Presupuesto Interactivo -->
-  <section id="simulador" class="container">
-    <div class="title-center">
-      <h2>Simulador de Tratamiento</h2>
-      <p>Calcula una estimación aproximada de sesiones y tiempo estimado.</p>
+  <!-- Ventana Modal de Reserva -->
+  <div class="modal" id="modalCita">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal()">&times;</span>
+      <h2>Reserva tu Cita</h2>
+      <form id="formCita" onsubmit="procesarCita(event)">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" id="nombre" required placeholder="Ej: Maria Garcia">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp:</label>
+          <input type="tel" id="telefono" required placeholder="Ej: +51 987654321">
+        </div>
+        <div class="form-group">
+          <label for="servicio">Especialidad de Interés:</label>
+          <select id="servicio">
+            <option value="Consulta General">Consulta General</option>
+            <option value="Diseño 3D de Sonrisa">Diseño 3D de Sonrisa</option>
+            <option value="Ortodoncia Invisible">Ortodoncia Invisible</option>
+            <option value="Blanqueamiento Láser">Blanqueamiento Láser</option>
+            <option value="Implantes Guiados">Implantes Guiados</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fecha">Fecha Preferida:</label>
+          <input type="date" id="fecha" required>
+        </div>
+        <button type="submit" class="form-submit">Confirmar Reserva</button>
+      </form>
     </div>
-    <div class="calc-box">
-      <div class="slider-group">
-        <label>Nivel de Ajuste Requerido: <span id="numDientes" style="color:var(--primary)">3</span> Áreas</label>
-        <input type="range" id="dientesRange" min="1" max="10" value="3" oninput="actualizarCalc()">
-      </div>
-      <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; text-align: center;">
-        <p style="color: var(--text-muted);">Sesiones Estimadas Recomendadas:</p>
-        <h3 id="resultadoSesiones" style="font-size: 2.5rem; color: var(--accent);">2 Sesiones</h3>
-      </div>
-    </div>
-  </section>
+  </div>
+
+  <!-- Botón WhatsApp -->
+  <a href="https://wa.me/51987654321?text=Hola,%20quisiera%20agendar%20una%20cita" target="_blank" class="whatsapp-float">
+    💬 WhatsApp
+  </a>
 
   <footer>
     <p>&copy; 2026 Clínica Dental Sonrisas Sanas | Innovación Odontológica</p>
   </footer>
 
   <script>
-    function actualizarCalc() {
-      const val = document.getElementById('dientesRange').value;
-      document.getElementById('numDientes').innerText = val;
-      const sesiones = Math.ceil(val / 2);
-      document.getElementById('resultadoSesiones').innerText = `${sesiones} Sesión(es)`;
+    function abrirModal(servicio = '') {
+      document.getElementById('modalCita').style.display = 'flex';
+      if (servicio) {
+        document.getElementById('servicio').value = servicio;
+      }
+    }
+
+    function cerrarModal() {
+      document.getElementById('modalCita').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('modalCita');
+      if (event.target == modal) {
+        cerrarModal();
+      }
+    }
+
+    function procesarCita(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const servicio = document.getElementById('servicio').value;
+      alert(`¡Excelente ${nombre}! Tu reserva para "${servicio}" se ha registrado correctamente. Te contactaremos muy pronto.`);
+      cerrarModal();
+      document.getElementById('formCita').reset();
     }
   </script>
 </body>
