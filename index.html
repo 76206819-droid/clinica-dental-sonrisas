@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sonrisas Sanas | Estética Dental & Odontología Avanzada</title>
+  <title>Clínica Dental Sonrisas Sanas | Odontología Avanzada</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
   <style>
@@ -29,242 +29,105 @@
       scroll-behavior: smooth;
     }
 
-    /* Fondo con Gradiente Dinámico */
     .bg-blobs {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      top: 0; left: 0;
-      z-index: -1;
-      overflow: hidden;
+      position: fixed; width: 100vw; height: 100vh;
+      top: 0; left: 0; z-index: -1; overflow: hidden;
     }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.4;
-    }
+    .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; }
     .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #0077b6; }
-    .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #10b981; }
+    .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: var(--accent); }
 
-    /* Navegación Glassmorphism */
     header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.8);
-      border-bottom: 1px solid var(--glass-border);
+      position: sticky; top: 0; backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid var(--glass-border);
       z-index: 900;
     }
     .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
+      max-width: 1200px; margin: auto; display: flex;
+      justify-content: space-between; align-items: center; padding: 1rem 2rem;
     }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--text-main);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
     .logo span { color: var(--primary); }
-    nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-left: 2rem;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
+    nav a { color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; font-weight: 600; transition: color 0.3s; }
     nav a:hover { color: var(--primary); }
 
     .btn-glow {
       background: linear-gradient(135deg, var(--primary), #0077b6);
-      color: #fff !important;
-      padding: 0.75rem 1.8rem;
-      border-radius: 30px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 20px var(--primary-glow);
+      color: #fff !important; padding: 0.7rem 1.5rem; border-radius: 30px;
+      border: none; font-weight: 700; cursor: pointer; box-shadow: 0 0 20px var(--primary-glow);
       transition: all 0.3s ease;
     }
-    .btn-glow:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px var(--primary-glow);
-    }
+    .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--primary-glow); }
 
-    /* Hero Section */
     .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 100px 20px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
+      max-width: 1200px; margin: auto; padding: 90px 20px 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
     }
     .hero-text h1 {
-      font-size: 3.5rem;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      font-weight: 800;
+      font-size: 3.2rem; line-height: 1.15; margin-bottom: 20px; font-weight: 800;
       background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .hero-text p {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-    .hero-img {
-      width: 100%;
-      border-radius: 24px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--glass-border);
-    }
+    .hero-text p { color: var(--text-muted); font-size: 1.15rem; margin-bottom: 30px; }
+    .hero-img { width: 100%; border-radius: 24px; box-shadow: var(--card-shadow); border: 1px solid var(--glass-border); }
 
-    /* Grid de Servicios */
-    .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
-    .title-center { text-align: center; margin-bottom: 50px; }
-    .title-center h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
-    .title-center p { color: var(--text-muted); }
-
-    .grid-services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
+    /* Sección Estadísticas */
+    .stats-container {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; margin: 40px 0; text-align: center;
     }
+    .stat-box { background: var(--glass-bg); padding: 25px; border-radius: 16px; border: 1px solid var(--glass-border); }
+    .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+
+    .container { max-width: 1200px; margin: auto; padding: 70px 20px; }
+    .title-center { text-align: center; margin-bottom: 40px; }
+    .title-center h2 { font-size: 2.3rem; font-weight: 800; margin-bottom: 10px; }
+
     .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      padding: 35px;
-      border-radius: 20px;
-      transition: all 0.4s ease;
-      cursor: pointer;
+      background: var(--glass-bg); backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border); padding: 30px;
+      border-radius: 20px; transition: all 0.4s ease;
     }
-    .glass-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(0, 180, 216, 0.15);
-    }
-    .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+    .glass-card:hover { transform: translateY(-8px); border-color: var(--primary); }
 
-    /* Ventana Modal Interactiva */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+    .card-icon { font-size: 2.2rem; margin-bottom: 15px; display: block; }
+
+    /* FAQ Desplegable */
+    details { margin-bottom: 15px; background: var(--glass-bg); padding: 18px 25px; border-radius: 12px; border: 1px solid var(--glass-border); cursor: pointer; }
+    summary { font-weight: 700; color: var(--text-main); font-size: 1.05rem; }
+    details p { margin-top: 10px; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Modal */
     .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px); z-index: 1000;
+      justify-content: center; align-items: center; padding: 20px;
     }
-
     .modal-content {
-      background: #1e293b;
-      border: 1px solid var(--glass-border);
-      padding: 35px;
-      border-radius: 20px;
-      max-width: 450px;
-      width: 100%;
-      box-shadow: var(--card-shadow);
-      position: relative;
-      animation: popup 0.3s ease-out;
-      color: var(--text-main);
+      background: #1e293b; border: 1px solid var(--glass-border);
+      padding: 35px; border-radius: 20px; max-width: 450px; width: 100%;
+      position: relative; color: var(--text-main);
     }
-
-    @keyframes popup {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px; right: 20px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-
-    .modal h2 {
-      color: var(--text-main);
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: var(--text-muted); }
     .form-group { margin-bottom: 15px; }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
+    .form-group label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--text-muted); }
+    .form-group input, .form-group select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid var(--glass-border); border-radius: 8px; color: var(--text-main); }
+    .form-submit { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--primary), #0077b6); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 12px;
-      background: #0f172a;
-      border: 1px solid var(--glass-border);
-      border-radius: 8px;
-      font-size: 1rem;
-      color: var(--text-main);
-      font-family: inherit;
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, var(--primary), #0077b6);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    /* Botón Flotante WhatsApp */
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px; right: 25px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      z-index: 800;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.3s;
+      position: fixed; bottom: 25px; right: 25px; background-color: #25d366;
+      color: white; border-radius: 50px; padding: 12px 20px; font-weight: bold;
+      text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 800;
     }
-    .whatsapp-float:hover { transform: scale(1.08); }
 
-    footer {
-      border-top: 1px solid var(--glass-border);
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.95);
-    }
+    footer { border-top: 1px solid var(--glass-border); text-align: center; padding: 30px 20px; color: var(--text-muted); background: rgba(15, 23, 42, 0.95); }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-text h1 { font-size: 2.5rem; }
+      .hero, .grid-2 { grid-template-columns: 1fr; text-align: center; }
+      nav { display: none; }
     }
   </style>
 </head>
@@ -277,145 +140,159 @@
 
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">Sonrisas<span>Sanas</span></a>
+      <a href="#" class="logo">✨ Sonrisas<span>Sanas</span></a>
       <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Especialidades</a>
+        <a href="#faq">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <!-- Botón configurado para abrir el modal -->
       <button class="btn-glow" onclick="abrirModal()">Reservar Cita</button>
     </div>
   </header>
 
-  <section class="hero">
+  <section id="inicio" class="hero">
     <div class="hero-text">
       <h1>La nueva era de la estética dental</h1>
-      <p>Tratamientos odontológicos indoloros guiados por tecnología avanzada y diseño digital de sonrisa.</p>
-      <!-- Botón configurado para abrir el modal -->
-      <button class="btn-glow" style="font-size: 1.1rem;" onclick="abrirModal()">Agendar Evaluación Digital</button>
+      <p>Tratamientos odontológicos indoloros guiados por tecnología digital avanzada y diseño 3D de sonrisa en Huancayo.</p>
+      <button class="btn-glow" style="font-size: 1.05rem;" onclick="abrirModal()">Agendar Evaluación Digital</button>
     </div>
     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Clínica Dental Futurista" class="hero-img">
+  </section>
+
+  <!-- Métricas de Impacto inspiradas en Vercel -->
+  <section class="container" style="padding-top:0;">
+    <div class="stats-container">
+      <div class="stat-box"><div class="stat-number">+1,200</div><p style="color:var(--text-muted)">Pacientes Atendidos</p></div>
+      <div class="stat-box"><div class="stat-number">99.4%</div><p style="color:var(--text-muted)">Satisfacción Garantizada</p></div>
+      <div class="stat-box"><div class="stat-number">100%</div><p style="color:var(--text-muted)">Tratamientos Sin Dolor</p></div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="container">
+    <div class="title-center">
+      <h2>Sobre Nuestra Clínica</h2>
+    </div>
+    <div class="grid-2">
+      <div class="glass-card">
+        <span class="card-icon">🎯</span>
+        <h3>Misión</h3>
+        <p style="color: var(--text-muted);">Transformar la experiencia odontológica mediante tratamientos indoloros y de alta precisión con tecnología digital de última generación.</p>
+      </div>
+      <div class="glass-card">
+        <span class="card-icon">🚀</span>
+        <h3>Visión</h3>
+        <p style="color: var(--text-muted);">Ser la clínica dental líder en odontología digital y estética en la región central del Perú para el año 2028.</p>
+      </div>
+    </div>
   </section>
 
   <section id="servicios" class="container">
     <div class="title-center">
       <h2>Especialidades de Vanguardia</h2>
-      <p>Haz clic en cualquier servicio para agendar tu consulta.</p>
     </div>
     <div class="grid-services">
-      <div class="glass-card" onclick="abrirModal('Diseño 3D de Sonrisa')">
+      <div class="glass-card" onclick="abrirModal('Diseño 3D de Sonrisa')" style="cursor:pointer;">
         <span class="card-icon">✨</span>
         <h3>Diseño 3D de Sonrisa</h3>
-        <p>Visualiza el resultado final de tus carillas o coronas antes de iniciar el tratamiento.</p>
+        <p style="color: var(--text-muted);">Planificación digital para previsualizar el resultado antes de iniciar.</p>
       </div>
-      <div class="glass-card" onclick="abrirModal('Ortodoncia Invisible')">
+      <div class="glass-card" onclick="abrirModal('Ortodoncia Invisible')" style="cursor:pointer;">
         <span class="card-icon">🦷</span>
         <h3>Ortodoncia Invisible</h3>
-        <p>Alineadores transparentes de última generación sin brackets ni molestias.</p>
+        <p style="color: var(--text-muted);">Alineadores transparentes cómodos sin brackets metálicos.</p>
       </div>
-      <div class="glass-card" onclick="abrirModal('Blanqueamiento Láser')">
+      <div class="glass-card" onclick="abrirModal('Blanqueamiento Láser')" style="cursor:pointer;">
         <span class="card-icon">💎</span>
         <h3>Blanqueamiento Láser</h3>
-        <p>Aclaramiento en una sola sesión de 45 minutos sin sensibilidad dental.</p>
+        <p style="color: var(--text-muted);">Aclaramiento en una sola sesión de 45 minutos sin sensibilidad.</p>
       </div>
-      <div class="glass-card" onclick="abrirModal('Implantes Guiados')">
+      <div class="glass-card" onclick="abrirModal('Implantes Guiados 3D')" style="cursor:pointer;">
         <span class="card-icon">🛡️</span>
-        <h3>Implantes Guiados</h3>
-        <p>Cirugía guiada por escáner intraoral 3D para una recuperación rápida.</p>
+        <h3>Implantes Guiados 3D</h3>
+        <p style="color: var(--text-muted);">Cirugía guiada por computadora para una recuperación rápida.</p>
       </div>
     </div>
   </section>
 
-  <!-- Ventana Modal de Reserva -->
+  <!-- Sección FAQ Desplegable -->
+  <section id="faq" class="container">
+    <div class="title-center">
+      <h2>Preguntas Frecuentes</h2>
+      <p>Resolvemos tus dudas principales antes de agendar</p>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <details>
+        <summary>¿Los tratamientos causan algún tipo de dolor?</summary>
+        <p>No, todos nuestros procedimientos cuentan con protocolos de anestesia localizada y tecnología láser para garantizar cero molestias.</p>
+      </details>
+      <details>
+        <summary>¿Cómo puedo reservar una cita?</summary>
+        <p>Puedes agendar directamente presionando el botón "Reservar Cita" o enviando un mensaje directo por WhatsApp.</p>
+      </details>
+      <details>
+        <summary>¿Dónde están ubicados?</summary>
+        <p>Nos encontramos en la intersección de Av. Real y Jr. Prado en la ciudad de Huancayo, Perú.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contacto" class="container">
+    <div class="title-center">
+      <h2>Ubicación y Contacto</h2>
+    </div>
+    <div class="glass-card" style="max-width: 650px; margin: 0 auto; text-align: center;">
+      <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 10px;">📍 Dirección Principal:</p>
+      <p style="font-size: 1.15rem; margin-bottom: 15px;">Av. Real y Jr. Prado, Huancayo, Perú</p>
+      <p style="color: var(--text-muted);">📞 Teléfono: +51 987 654 321</p>
+      <p style="color: var(--text-muted);">⏰ Horario: Lunes a Sábado de 8:00 AM a 7:00 PM</p>
+    </div>
+  </section>
+
   <div class="modal" id="modalCita">
     <div class="modal-content">
       <span class="close-btn" onclick="cerrarModal()">&times;</span>
-      <h2>Reserva tu Cita</h2>
+      <h2 style="text-align:center; margin-bottom:20px;">Reserva tu Cita</h2>
       <form id="formCita" onsubmit="procesarCita(event)">
         <div class="form-group">
           <label for="nombre">Nombre Completo:</label>
-          <input type="text" id="nombre" required placeholder="Ej: Maria Garcia">
+          <input type="text" id="nombre" required placeholder="Ej: María García">
         </div>
         <div class="form-group">
           <label for="telefono">Teléfono / WhatsApp:</label>
           <input type="tel" id="telefono" required placeholder="Ej: +51 987654321">
         </div>
         <div class="form-group">
-          <label for="servicio">Especialidad de Interés:</label>
+          <label for="servicio">Especialidad:</label>
           <select id="servicio">
             <option value="Consulta General">Consulta General</option>
             <option value="Diseño 3D de Sonrisa">Diseño 3D de Sonrisa</option>
             <option value="Ortodoncia Invisible">Ortodoncia Invisible</option>
             <option value="Blanqueamiento Láser">Blanqueamiento Láser</option>
-            <option value="Implantes Guiados">Implantes Guiados</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="fecha">Fecha Preferida:</label>
-          <input type="date" id="fecha" required>
         </div>
         <button type="submit" class="form-submit">Confirmar Reserva</button>
       </form>
     </div>
   </div>
 
-<!-- Botón WhatsApp -->
-  <a href="https://wa.me/51987654321?text=Hola,%20quisiera%20agendar%20una%20cita" target="_blank" class="whatsapp-float">
-    💬 WhatsApp
-  </a>
-
-  <!-- Sección de Ubicación Agregada -->
-  <section id="contacto" class="container">
-    <div class="title-center">
-      <h2>Ubicación y Contacto</h2>
-      <p>Visítanos en nuestra sede principal</p>
-    </div>
-    <div class="glass-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-      <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 10px;">
-        📍 Dirección:
-      </p>
-      <p style="font-size: 1.1rem; margin-bottom: 15px;">
-        Av. Real y Jr. Prado, Huancayo, Perú
-      </p>
-      <p style="color: var(--text-muted); margin-bottom: 8px;">
-        📞 Teléfono: +51 987 654 321
-      </p>
-      <p style="color: var(--text-muted);">
-        ⏰ Horario: Lunes a Sábado: 8:00 AM - 7:00 PM
-      </p>
-    </div>
-  </section>
+  <a href="https://wa.me/51987654321?text=Hola,%20quisiera%20agendar%20una%20cita" target="_blank" class="whatsapp-float">💬 WhatsApp</a>
 
   <footer>
-    <p>&copy; 2026 Clínica Dental Sonrisas Sanas | Innovación Odontológica</p>
+    <p>&copy; 2026 Clínica Dental Sonrisas Sanas | Docente: Sandra Chávez Huamanchumo</p>
   </footer>
 
   <script>
     function abrirModal(servicio = '') {
       document.getElementById('modalCita').style.display = 'flex';
-      if (servicio) {
-        document.getElementById('servicio').value = servicio;
-      }
+      if (servicio) { document.getElementById('servicio').value = servicio; }
     }
-
-    function cerrarModal() {
-      document.getElementById('modalCita').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('modalCita');
-      if (event.target == modal) {
-        cerrarModal();
-      }
-    }
-
+    function cerrarModal() { document.getElementById('modalCita').style.display = 'none'; }
     function procesarCita(e) {
       e.preventDefault();
-      const nombre = document.getElementById('nombre').value;
-      const servicio = document.getElementById('servicio').value;
-      alert(`¡Excelente ${nombre}! Tu reserva para "${servicio}" se ha registrado correctamente. Te contactaremos muy pronto.`);
+      alert(`¡Cita registrada con éxito! Te contactaremos a la brevedad.`);
       cerrarModal();
-      document.getElementById('formCita').reset();
     }
   </script>
 </body>
