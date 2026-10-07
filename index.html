@@ -4,56 +4,316 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clínica Dental Sonrisas Sanas</title>
+  <!-- Fuente Google Font (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
-    header { background-color: #0077b6; color: white; padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    section { padding: 20px; max-width: 800px; margin: auto; }
-    .hero { background: #e0f7fa; padding: 40px 20px; text-align: center; }
-    footer { background: #023e8a; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+    :root {
+      --primary: #0077b6;
+      --primary-dark: #023e8a;
+      --secondary: #00b4d8;
+      --accent: #52b788;
+      --light-bg: #f8f9fa;
+      --dark-text: #2b2d42;
+      --white: #ffffff;
+      --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navegación */
+    header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: var(--dark-text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn-cita {
+      background-color: var(--accent);
+      color: var(--white) !important;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      transition: background 0.3s !important;
+    }
+
+    .btn-cita:hover {
+      background-color: #40916c !important;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #e0f7fa 0%, #caf0f8 100%);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #457b9d;
+      margin-bottom: 25px;
+    }
+
+    /* Contenedores Principales */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--secondary);
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Sección Nosotros (Tarjetas de Misión y Visión) */
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .info-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border-top: 5px solid var(--primary);
+    }
+
+    .info-card h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    /* Servicios en Grid */
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .servicio-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .servicio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .servicio-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    /* Contacto */
+    .contacto-container {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .contacto-info p {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+
+    .contacto-info span {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 25px 20px;
+      margin-top: 40px;
+    }
+
+    /* Adaptabilidad Móvil */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      nav a {
+        margin: 0 8px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Encabezado y Navegación -->
   <header>
-    <h1>Clínica Dental Sonrisas Sanas</h1>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+    <div class="nav-container">
+      <a href="#" class="logo">🦷 Sonrisas Sanas</a>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto" class="btn-cita">Agendar Cita</a>
+      </nav>
+    </div>
   </header>
 
+  <!-- Hero / Banner de Bienvenida -->
   <section id="inicio" class="hero">
-    <h2>Cuidamos tu sonrisa con la mejor tecnología</h2>
-    <p>Atención médica profesional, estética e integral para toda la familia.</p>
+    <div class="hero-content">
+      <h1>Cuidamos tu sonrisa con la mejor tecnología</h1>
+      <p>Atención médica odontológica profesional, estética e integral para ti y toda tu familia.</p>
+    </div>
   </section>
 
-  <section id="nosotros">
-    <h2>Nosotros</h2>
-    <p><strong>Misión:</strong> Ofrecer la mejor atención dental personalizada con tecnología de vanguardia.</p>
-    <p><strong>Visión:</strong> Ser la clínica dental preferida por calidad y calidez humana.</p>
+  <!-- Sección Nosotros -->
+  <section id="nosotros" class="container">
+    <h2 class="section-title">Sobre Nosotros</h2>
+    <div class="nosotros-grid">
+      <div class="info-card">
+        <h3>🎯 Nuestra Misión</h3>
+        <p>Ofrecer la mejor atención dental personalizada con tecnología de vanguardia, garantizando tratamientos cómodos, seguros y eficientes para nuestros pacientes.</p>
+      </div>
+      <div class="info-card">
+        <h3>👁️ Nuestra Visión</h3>
+        <p>Ser la clínica dental referente en la región por nuestra excelencia profesional, calidez humana e innovación constante en salud oral.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="servicios">
-    <h2>Nuestros Servicios</h2>
-    <ul>
-      <li>Ortodoncia e Implantes Dentales</li>
-      <li>Limpieza Profunda y Profilaxis</li>
-      <li>Blanqueamiento Dental Estético</li>
-      <li>Odontopediatría</li>
-    </ul>
+  <!-- Sección Servicios -->
+  <section id="servicios" class="container">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="servicios-grid">
+      <div class="servicio-card">
+        <div class="icon">😁</div>
+        <h3>Ortodoncia e Implantes</h3>
+        <p>Alineación dental perfecta e implantes de alta durabilidad.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="icon">✨</div>
+        <h3>Blanqueamiento Estético</h3>
+        <p>Aclara el tono de tus dientes con resultados visibles en una sesión.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="icon">🧼</div>
+        <h3>Limpieza Profunda</h3>
+        <p>Profilaxis completa y eliminación de sarro para prevenir caries.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="icon">👶</div>
+        <h3>Odontopediatría</h3>
+        <p>Cuidado especializado y amigable para la salud dental de los niños.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>📍 Dirección: Av. Principal 123, Lima</p>
-    <p>📞 Teléfono: +51 987 654 321</p>
-    <p>✉️ Email: contacto@sonrisassanas.com</p>
+  <!-- Sección Contacto -->
+  <section id="contacto" class="container">
+    <h2 class="section-title">Contacto y Ubicación</h2>
+    <div class="contacto-container">
+      <div class="contacto-info">
+        <p><span>📍 Dirección:</span> Av. Principal 123, Lima, Perú</p>
+        <p><span>📞 Teléfono:</span> +51 987 654 321</p>
+        <p><span>✉️ Correo Electrónico:</span> contacto@sonrisassanas.com</p>
+        <p><span>⏰ Horario de Atención:</span> Lunes a Sábado: 8:00 AM - 7:00 PM</p>
+      </div>
+    </div>
   </section>
 
+  <!-- Pie de página -->
   <footer>
     <p>&copy; 2026 Clínica Dental Sonrisas Sanas. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>
